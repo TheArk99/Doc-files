@@ -1,0 +1,11 @@
+aquesous solutions lithium sulfate and clacium nitrate are mixed to form the precipitate clacium sulfate. Write the (1) balanced molecular (2) complete ionic, and (3) net ionic equations.
+
+Balanced:
+Li₂(SO₄)(aq) + Ca(NO₃)₂(aq)  →   Ca(SO₄)₍s₎ + 2Li(NO₃)(ap)
+
+Complete ionic:
+  2Li⁺ +  SO₄²⁻ + Ca²⁺ + NO₃⁻ →  Ca(SO₄)₍s₎ + Li⁺ + NO₃⁻ 
+
+
+net ionic equation:
+   SO₄²⁻ + Ca²⁺  →  Ca(SO₄)₍s₎ 

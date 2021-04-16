@@ -1,0 +1,63 @@
+Double Displacement
+
+Fe(NO₃)₂(aq) + Na₂CO₃(aq)  →  2NaNo₃(aq) + FeCO₃(s)
+
+iron and Na are the cation and the rest are anions
+they are binary(form with the opisite charge)
+
+
+#########################################################################################
+
+
+Single Displacement / "REDOX"
+
+Cu(s) + AgNO₃(aq)  →  CuNO₃ + Ag
+
+Cu in this reaction has no charge it is 0 once it reacts Ag is now 0 and Cu has a positive charge
+Cu give its electrons to Ag when they react to become a + charge
+
+
+#########################################################################################
+
+
+Redox comes from the RED == Reduction while the OX == oxadation
+
+Oxidation = Loss of electrons
+
+Reduction = Gain electrons
+
+OILRIG:
+O = Oxidation
+I = is
+L = Losing
+R = Reduction
+I = Is
+G = Gain of electrons
+
+##########################################################################################
+
+Covalent:
+
+2H₂O₂  →  2H₂O + O₂
+
+
+Na(s) + Cl₂(g)  →  NaCl(s)
+
+both chemicals before reaction were nutral but the reacted and became Na⁺ and Cl⁻
+Na gave up electrons to Cl
+
+
+################################################################################
+# REDOX: Transfer of electrons from one substance to another                   #
+#                                                                              #   
+# Covalent compounds that get rearranged into new different covalent compounds #
+#                                                                              #
+# When a substatnce reacts with elemental oxygen                               #
+################################################################################
+
+#########################################################################################
+!!POSSIBLE TEST QUESTION!!
+
+combustion / REDOX:
+
+O₂(g) + C₈H₁₈(g)  →  CO₂(g) + H₂0(g)

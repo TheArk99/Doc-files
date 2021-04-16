@@ -1,0 +1,12 @@
+Single replacement/redox reaction 
+for the reaction between solid aluminum and a copper (II) chloride solution.
+
+Balancing:
+  2Al₍s₎ + 3Cu(Cl)₂₍aq₎  → 3Cu₍s₎ + 2Al(Cl)₂₍aq₎
+
+complete ionic:
+  2Al₍s₎ + 3Cu²⁺₍aq₎ + 3Cl₂⁻₍aq₎  → 3Cu₍s₎ + 2Al³⁺ + 2Cl₂⁻₍aq₎
+
+
+net ionic:
+  2Al₍s₎ + 3Cu₍aq₎  →  2Al₍aq₎ + 3Cu₍s₎

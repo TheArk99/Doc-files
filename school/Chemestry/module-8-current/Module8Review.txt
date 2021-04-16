@@ -1,0 +1,47 @@
+Generic types of chemical reactions
+
+Synthesis A + B = AB
+	Redox  (gain/lose electrons e-) (metal reacts with nonmetal) (x reacts with O2(g)) (covalent compounds that rearrange to form new different covalent compounds)
+	N2(g) + 3H2(g) = 2NH3(g)
+	
+	Mg(s) + N2(g) = Mg3N2(s) 
+
+	2Na(s) + Cl2(g) = 2NaCl(s)
+
+	Redox (also Combustion)  
+	2H2(g) + O2(g) = 2H2O(g)
+
+	S(s) + O2(g) = SO2(g)
+
+	C(s) + O2(g) = CO2(g)
+
+	*these are Combustion reaction but technically not a synthesis reaction.
+hydrocarbon CH4 or carbohydrate C6H12O6 reacts with O2(g) to form CO2(g) + H2O(l)
+*CH4(g) + 2O2(g) = CO2(g) + 2H2O(g)
+
+	*C6H12O6(s) + 6O2(g) = 6CO2(g) + 6H2O(g)
+
+
+Decomposition AB = A + B  
+	Redox  (gain/lose electrons e-) (metal reacts with nonmetal) (x reacts with O2(g))
+(covalent compounds that rearrange to form new different covalent compounds)
+
+	H2O2(l) = H2O(l) + O2(g)
+
+ 	2NaHCO3(s) → Na2CO3(s) + H2O(l) + CO2(g)
+
+Single replacement A + BC = B + AC
+	Redox   (gain/lose electrons e-) (metal reacts with nonmetal) (x reacts with O2(g)
+(covalent compounds that rearrange to form new different covalent compounds)
+	Cu(s) + 2AgNO3(aq) = 2Ag(s) + Cu(NO3)2(aq)
+
+
+Double replacement AB + CD = AD + CB
+	Precipitation reaction       2 solutions(aq) mix to form a precipitate(s)
+	2KI(aq) + Pb(NO3)2(aq) = 2KNO3(aq) + PbI2(s)
+
+	Acid/Base neutralization reaction        Acid + Base = water + salt
+							H+         OH-
+HCl(aq) + NaOH(aq) = H2O(l) + NaCl(aq)
+
+

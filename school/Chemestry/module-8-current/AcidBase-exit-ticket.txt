@@ -1,0 +1,12 @@
+hydrobromic acid and calcium hydroxide
+
+balanced:
+  Ca(OH)₂(aq) + 2HBr(aq) → CaBr₂(aq) + 2H₂O(L)
+
+complete ionic equation:
+    2H⁺ + 2Br⁻ + Ca²⁺ + 2OH⁻  →  Ca²⁺ + 2Br + 2H₂O
+
+
+net ionic:
+   2H⁺ + 2OH⁻  →  2H₂O
+ 

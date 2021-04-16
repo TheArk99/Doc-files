@@ -1,0 +1,5 @@
+Pb(NO₃)₂ + 2KI  --→  2KNO₃ + PbI₂
+
+Pb²⁺(aq) + 2NO₃-(aq) + 2K⁺(aq) + 2I⁻(aq)   --→   PbI₂(s) + 2K⁺(aq) + 2NO₃- (aq)
+
+Pb²⁺(aq) + 2I⁻(aq) = PbI₂(s)

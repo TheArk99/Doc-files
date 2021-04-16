@@ -1,0 +1,26 @@
+2(sqrt(75))/sqrt(3) 
+
+	2*sqrt(75)/sqrt(3)
+		
+		2* sqrt(75/3)
+
+			2* sqrt(25)
+			
+			ans ==	2*5
+
+
+(2-3sqrt(5))^2
+	(2-3sqrt(5))(2-3sqrt(5))
+		4-6sqrt(5) 
+		ans ==	49-12sqrt(5)
+
+
+
+
+5/2-sqrt(3) 
+
+	multiply top and bottom by bottom when two at bottom 
+
+		10 + 5 sqrt(3)/4-3
+
+			ans == 10
