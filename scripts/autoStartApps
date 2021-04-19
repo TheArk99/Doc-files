@@ -2,7 +2,7 @@
 
 urxvt -e "cava" &
 sleep .5
-urxvt -e "cbonsai" &
+exec "urxvt" &
 sleep .5
 urxvt -e "/home/noah/Documents/scripts/./clock.sh" &
 sleep .5
