@@ -1,0 +1,7 @@
+#!/bin/sh
+dwm="/home/noah/.config/dwm/"
+dmenu="/home/noah/.config/dmenu/"
+stat="/home/noah/.config/slstatus"
+make="sudo make clean install"
+
+cd $dwm && $make; cd $dmenu && $make; cd $stat && $make
