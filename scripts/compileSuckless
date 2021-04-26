@@ -2,6 +2,11 @@
 dwm="/home/noah/.config/dwm/"
 dmenu="/home/noah/.config/dmenu/"
 stat="/home/noah/.config/slstatus"
-make="sudo make clean install"
+make="make clean install"
 
-cd $dwm && $make; cd $dmenu && $make; cd $stat && $make
+cd $dwm &&
+sudo $make;
+cd $dmenu &&
+sudo $make;
+cd $stat &&
+sudo $make
