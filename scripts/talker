@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/dash
 clear
 echo "what would you like to talk about?"
 espeak "what would you like to talk about?" 2>/dev/null;
@@ -7,7 +7,7 @@ talks=("say hello to user" "go home" "exit")
 select choice in "${talks[@]}"; do
   case $choice in
     "say hello to user")
-      espeak "hello user $USER how are you doing today?" 2>/dev/null;
+      espeak "hello $USER how are you doing today?" 2>/dev/null;
       clear
       select howis in "good" "bad"; do
         case $howis in
