@@ -1,11 +1,25 @@
 #!/bin/bash
+clear
+echo "what would you like to talk about?"
 espeak "what would you like to talk about?" 2>/dev/null;
 #PS3="what would you like to talk about?"
 talks=("say hello to user" "go home" "exit")
 select choice in "${talks[@]}"; do
   case $choice in
     "say hello to user")
-      espeak '"hello user" $USER' 2>/dev/null;
+      espeak "hello user $USER how are you doing today?" 2>/dev/null;
+      clear
+      select howis in "good" "bad"; do
+        case $howis in
+          "good")
+            espeak "Oh that is so good, i do love to hear that you are doing well!" 2>/dev/null;
+            break;;
+          "bad")
+            espeak "Oh my that is so sad, i do wish your day gets better" 2>/dev/null;
+            break;;
+          *) espeak "Invalid option $REPLY" 2>/dev/null;;
+          esac
+        done
       break;;
     "go home")
       espeak "you wish to go home and rethink your life" 2>/dev/null;
