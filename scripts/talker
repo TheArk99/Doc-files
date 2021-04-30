@@ -1,4 +1,4 @@
-#!/bin/dash
+#!/bin/bash
 clear
 echo "what would you like to talk about?"
 espeak "what would you like to talk about?" 2>/dev/null;
