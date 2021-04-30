@@ -24,7 +24,7 @@ print("Ratings: ",yt.rating)
 
 #these print to a file to remember
 
-f = open("/home/noah/Videos/YTvids/" + Title + ".txt", "a")
+f = open("/home/noah/Videos/" + Title + ".txt", "a")
 
 print("Title: ",yt.title, file=f)
 
@@ -68,4 +68,4 @@ print(yt.streams.filter(progressive=True))
 
 ys = yt.streams.get_by_itag(input("\n choose your tag for file: "))
 
-ys.download("/home/noah/Videos/YTvids/")
+ys.download("/home/noah/Videos/")

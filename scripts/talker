@@ -13,19 +13,24 @@ select choice in "${talks[@]}"; do
         case $howis in
           "good")
             espeak "Oh that is so good, i do love to hear that you are doing well!" 2>/dev/null;
+            clear;
             break;;
           "bad")
             espeak "Oh my that is so sad, i do wish your day gets better" 2>/dev/null;
+            clear;
             break;;
           *) espeak "Invalid option $REPLY" 2>/dev/null;;
           esac
         done
+      clear;
       break;;
     "go home")
       espeak "you wish to go home and rethink your life" 2>/dev/null;
+      clear;
       break;;
     "exit")
       espeak "you are now exititng..." 2>/dev/null
+      clear;
       exit;;
     *) espeak "Invalid option $REPLY" 2>/dev/null;;
   esac
