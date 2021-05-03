@@ -1,0 +1,8 @@
+#!/bin/sh
+dir="/home/'echo $USER'/Documents/scripts/"
+
+options=$(cd ${dir} && /bin/ls -d */ | cut -d " " -f1)
+
+choice=$(echo -e "${options[@]}" | dmenu -i -p 'scritps: ')
+
+#if [ "$choice" == ${options[@]} ]; then
