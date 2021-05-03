@@ -1,8 +1,11 @@
 #!/bin/sh
-dir="/home/'echo $USER'/Documents/scripts/"
+#dir='/home/'echo $USER'/Documents/scripts/'
+dir='/home/noah/Documents/scripts/'
 
-options=$(cd ${dir} && /bin/ls -d */ | cut -d " " -f1)
+options=$(cd ${dir} && /bin/ls -d * | cut -d " " -f1)
+arr=($options)
 
 choice=$(echo -e "${options[@]}" | dmenu -i -p 'scritps: ')
 
-#if [ "$choice" == ${options[@]} ]; then
+if [ "$choice" == ${options[@]} ]; then
+  ./"$choice"
