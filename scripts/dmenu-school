@@ -1,0 +1,11 @@
+#! /bin/bash
+
+myDir='/home/$USER/Documents/school/'
+options=$(cd ${myDir} && /bin/ls -d */ | cut -d " " -f1)
+arr=($options)
+
+choice=$(echo -e "${options[@]}" | dmenu -i -p 'School: ')
+
+if [ "$choice" == ${arr[2]} ]; then
+  cd ${myDir}
+fi
