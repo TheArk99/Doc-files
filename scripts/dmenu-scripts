@@ -1,11 +1,16 @@
 #!/bin/sh
-#dir='/home/'echo $USER'/Documents/scripts/'
-dir='/home/noah/Documents/scripts/'
+dir='/home/'$USER'/Documents/scripts/'
+#dir='/home/noah/Documents/scripts/'
 
 options=$(cd ${dir} && /bin/ls -d * | cut -d " " -f1)
 arr=($options)
 
 choice=$(echo -e "${options[@]}" | dmenu -i -p 'scritps: ')
 
-if [ "$choice" == ${options[@]} ]; then
-  ./"$choice"
+permisions='stat -c %A ${choice}'
+
+if [ "$permisions" != -rwxr-xr-x ]; then
+  chmod +x ${dir}${choice}
+fi
+
+urxvt -e ${dir}${choice}
