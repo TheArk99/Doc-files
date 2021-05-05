@@ -1,6 +1,5 @@
 #!/bin/sh
 dir='/home/'$USER'/Documents/scripts/'
-#dir='/home/noah/Documents/scripts/'
 
 options=$(cd ${dir} && /bin/ls -d * | cut -d " " -f1)
 arr=($options)
