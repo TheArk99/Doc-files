@@ -6,10 +6,10 @@ arr=($options)
 
 choice=$(echo -e "${options[@]}" | dmenu -i -p 'School: ')
 
-#if [ "$choice" == ${arr[2]} ]; then
-#  urxvt -e cd ${myDir}${choice}
-#else
-#  urxvt -e cd ${myDir}${choice}
-#fi
-
 dir=${myDir}${choice}
+
+if [ "$choice" == ${arr[2]} ]; then
+  urxvt -e "ranger" $dir/semester\ 2/bindercheck3/
+else
+  urxvt -e "ranger" $dir
+fi
