@@ -16,7 +16,12 @@ then
           echo "whould You like to install all apps from the installed-apps.txt?" ;
           select yn in "Yes" "No"; do
             case $yn in
-              Yes ) pacman -Syu --needed $(comm -12 <(pacman -Slq | sort) <(sort ~/installed-apps.txt)) --noconfirm ; cd ${home} ; git clone https://aur.archlinux.org/paru.git ; cd paru ; makepkg -si & paru -Syu --needed - < ~/installed-apps.txt --noconfirm ; break;;
+              Yes ) pacman -Syu --needed $(comm -12 <(pacman -Slq | sort) <(sort ~/installed-apps.txt)) --noconfirm ;
+                cd ${home} ;
+                git clone https://aur.archlinux.org/paru.git ;
+                cd paru ; makepkg -si &
+                paru -Syu --needed - < ~/installed-apps.txt --noconfirm ;
+                break;;
               No ) break;;
             esac
           done
@@ -38,7 +43,11 @@ then
 dwm is Not installed, do You want to install it?"
   select yn in "Yes" "No"; do
     case $yn in
-        Yes ) git clone https://github.com/TheArk99/dwm.git ${home}/.config/ ; cd ${home}/.config/dwm ; sudo make clean install ; echo "dwm is Now installed" ; break;;
+        Yes ) git clone https://github.com/TheArk99/dwm.git ${home}/.config/ ;
+          cd ${home}/.config/dwm ;
+          sudo make clean install ;
+          echo "dwm is Now installed" ;
+          break;;
         No ) break;;
     esac
   done
@@ -56,7 +65,14 @@ then
 slstatus is Not installed, do You want to install it?"
   select yn in "Yes" "No"; do
     case $yn in
-        Yes ) git clone https://github.com/TheArk99/slstatus.git ${home}/.config/ ; cd ${home}/.config/slstatus ; sudo make clean install ; echo "slstatus is Now installed" ; break;;
+        Yes ) git clone https://github.com/TheArk99/slstatus.git ${home}/.config/ ;
+          cd ${home}/.config/slstatus ;
+          sudo ln pacmanUpgrades /bin/ ;
+          sudo ln forecast /bin/ ;
+          sudo ln moonphase /bin/ ;
+          sudo make clean install ;
+          echo "slstatus is Now installed" ;
+          break;;
         No ) break;;
     esac
   done
@@ -74,7 +90,11 @@ then
 dwm is Not installed, do You want to install it?"
   select yn in "Yes" "No"; do
     case $yn in
-        Yes ) git clone https://github.com/TheArk99/dmenu.git ${home}/.config/ ; cd ${home}/.config/dmenu ; sudo make clean install ; echo "dmenu is Now installed" ; break;;
+        Yes ) git clone https://github.com/TheArk99/dmenu.git ${home}/.config/ ;
+          cd ${home}/.config/dmenu ;
+          sudo make clean install ;
+          echo "dmenu is Now installed" ;
+          break;;
         No ) break;;
     esac
   done
@@ -92,7 +112,9 @@ then
   echo "fonts are Not installed, do You want to install them?"
   select yn in "Yes" "No"; do
     case $yn in
-        Yes ) sudo git clone https://github.com/TheArk99/fonts.git /etc/ ; fc-cache -f -v ; break;;
+        Yes ) sudo git clone https://github.com/TheArk99/fonts.git /etc/ ;
+          fc-cache -f -v ;
+          break;;
         No ) break;;
     esac
   done
@@ -110,13 +132,17 @@ then
   echo "urxvt extensions are Not installed, do You want to install them?"
   select yn in "Yes" "No"; do
     case $yn in
-        Yes ) sudo git clone https://github.com/TheArk99/URxvt-perl-extensions.git /lib64/urxvt/ ; cd /lib64/urxvt/ ; sudo cp -a URxvt-perl-extensions/. /ib64/urxvt/perl/ ; sudo rm -rf /lib64/urxvt/URxvt-perl-extensions ;break;;
+        Yes ) sudo git clone https://github.com/TheArk99/URxvt-perl-extensions.git /lib64/urxvt/ ;
+          cd /lib64/urxvt/ ;
+          sudo cp -a URxvt-perl-extensions/. /ib64/urxvt/perl/ ;
+          sudo rm -rf /lib64/urxvt/URxvt-perl-extensions ;
+          break;;
         No ) break;;
     esac
   done
 else
   echo "
-You have urxvt-extenstions are already installed,"
+You have URxvt-extenstions are already installed,"
   echo "Nothing to do...
   "
 fi
