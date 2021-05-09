@@ -134,7 +134,7 @@ then
     case $yn in
         Yes ) sudo git clone https://github.com/TheArk99/URxvt-perl-extensions.git /lib64/urxvt/ ;
           cd /lib64/urxvt/ ;
-          sudo cp -a URxvt-perl-extensions/. /ib64/urxvt/perl/ ;
+          sudo cp -a URxvt-perl-extensions/. /lib64/urxvt/perl/ ;
           sudo rm -rf /lib64/urxvt/URxvt-perl-extensions ;
           break;;
         No ) break;;
