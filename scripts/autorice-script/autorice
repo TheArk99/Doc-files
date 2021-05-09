@@ -2,6 +2,28 @@
 
 home='/home/'$USER''
 
+
+diffs=$(diff ${home}/Documents/scripts/autorice-script/pacman.conf /etc/pacman.conf)
+Diffs=($diffs)
+if [ "$Diffs" != "" ]
+then
+  echo "
+Do you want to replace default pacman.conf?"
+  select yn in "Yes" "No"; do
+    case $yn in
+        Yes ) sudo rm -rf /etc/pacman.conf ; sudo cp ${home}/Documents/scripts/autorice-script/pacman.conf /etc/ ; break;;
+        No ) break;;
+    esac
+  done
+else
+  echo "
+pacman.conf is to your specs,"
+  echo "Nothing to do...
+  "
+fi
+
+
+
 gitisthere=$(cd ${home} ; git remote show origin | grep "Fetch")
 
 if [ "$gitisthere" != "  Fetch URL: https://github.com/TheArk99/Arch-dot-files.git" ]
@@ -21,7 +43,8 @@ whould You like to install all apps from the installed-apps.txt?" ;
               Yes ) pacman -Syu --needed $(comm -12 <(pacman -Slq | sort) <(sort ~/installed-apps.txt)) --noconfirm ;
                 cd ${home} ;
                 git clone https://aur.archlinux.org/paru.git ;
-                cd paru ; makepkg -si &
+                cd paru ;
+                makepkg -si &
                 paru -Syu --needed - < ~/installed-apps.txt --noconfirm ;
                 break;;
               No ) break;;
@@ -178,26 +201,6 @@ urxvt extensions are Not installed, do You want to install them?"
 else
   echo "
 You have URxvt-extenstions already installed,"
-  echo "Nothing to do...
-  "
-fi
-
-
-diffs=$(diff ${home}/Documents/scripts/autorice-script/pacman.conf /etc/pacman.conf)
-Diffs=($diffs)
-if [ "$Diffs" != "" ]
-then
-  echo "
-Do you want to replace default pacman.conf?"
-  select yn in "Yes" "No"; do
-    case $yn in
-        Yes ) sudo rm -rf /etc/pacman.conf ; sudo cp ${home}/Documents/scripts/autorice-script/pacman.conf /etc/ ; break;;
-        No ) break;;
-    esac
-  done
-else
-  echo "
-pacman.conf is to your specs,"
   echo "Nothing to do...
   "
 fi
