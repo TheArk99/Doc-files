@@ -1,62 +1,122 @@
 #!/bin/bash
 
 home='/home/'$USER''
-gitIsThere='Fetch URL: https://github.com/TheArk99/Arch-dot-files.git'
 
-if [ "$gitIsThere" != "Fetch URL: https://github.com/TheArk99/Arch-dot-files.git" ]
+gitisthere=$(cd ${home} ; git remote show origin | grep "Fetch")
+
+if [ "$gitisthere" != "  Fetch URL: https://github.com/TheArk99/Arch-dot-files.git" ]
 then
-  echo "dot files are not installed, do you want to install them?"
+  echo "dot files are Not installed, do You want to install them?"
   select yn in "Yes" "No"; do
     case $yn in
-        Yes ) git clone https://github.com/TheArk99/Arch-dot-files.git ${home}/ ; cd ${home}/.config/dwm ; sudo make clean install ; echo "dwm is now installed" ; break;;
-        No ) exit;;
+        Yes ) git clone https://github.com/TheArk99/Arch-dot-files.git ${home}/ ;
+          cd ${home} ;
+          cp -a Arch-dot-files/. ${home} ;
+          rm -rf ${home}/Arch-dot-files ;
+          echo "whould You like to install all apps from the installed-apps.txt?" ;
+          select yn in "Yes" "No"; do
+            case $yn in
+              Yes ) pacman -Syu --needed $(comm -12 <(pacman -Slq | sort) <(sort ~/installed-apps.txt)) --noconfirm ; cd ${home} ; git clone https://aur.archlinux.org/paru.git ; cd paru ; makepkg -si & paru -Syu --needed - < ~/installed-apps.txt --noconfirm ; break;;
+              No ) break;;
+            esac
+          done
+          break;;
+        No ) break;;
     esac
   done
 else
-  echo "\nyou have Arch-dot-files already installed,\n"
-  echo "nothing to do..."
+  echo "
+You have Arch-dot-files already installed,"
+  echo "Nothing to do...
+  "
 fi
+
 
 if [[ ! -d ${home}/.config/dwm ]]
 then
-  echo "dwm is not installed, do you want to install it?"
+  echo "
+dwm is Not installed, do You want to install it?"
   select yn in "Yes" "No"; do
     case $yn in
-        Yes ) git clone https://github.com/TheArk99/dwm.git ${home}/.config/ ; cd ${home}/.config/dwm ; sudo make clean install ; echo "dwm is now installed" ; break;;
-        No ) exit;;
+        Yes ) git clone https://github.com/TheArk99/dwm.git ${home}/.config/ ; cd ${home}/.config/dwm ; sudo make clean install ; echo "dwm is Now installed" ; break;;
+        No ) break;;
     esac
   done
 else
-  echo "\nyou have dwm already installed,"
-  echo "nothing to do..."
+  echo "
+You have dwm already installed,"
+  echo "Nothing to do...
+  "
 fi
 
 
 if [[ ! -d ${home}/.config/slstatus ]]
 then
-  echo "slstatus is not installed, do you want to install it?"
+  echo "
+slstatus is Not installed, do You want to install it?"
   select yn in "Yes" "No"; do
     case $yn in
-        Yes ) git clone https://github.com/TheArk99/slstatus.git ${home}/.config/ ; cd ${home}/.config/slstatus ; sudo make clean install ; echo "slstatus is now installed" ; break;;
-        No ) exit;;
+        Yes ) git clone https://github.com/TheArk99/slstatus.git ${home}/.config/ ; cd ${home}/.config/slstatus ; sudo make clean install ; echo "slstatus is Now installed" ; break;;
+        No ) break;;
     esac
   done
 else
-  echo "\nyou have slstatus already installed,"
-  echo "nothing to do..."
+  echo "
+You have slstatus already installed,"
+  echo "Nothing to do...
+  "
 fi
 
 
 if [[ ! -d ${home}/.config/dmenu ]]
 then
-  echo "dwm is not installed, do you want to install it?"
+  echo "
+dwm is Not installed, do You want to install it?"
   select yn in "Yes" "No"; do
     case $yn in
-        Yes ) git clone https://github.com/TheArk99/dmenu.git ${home}/.config/ ; cd ${home}/.config/dmenu ; sudo make clean install ; echo "dmenu is now installed" ; break;;
-        No ) exit;;
+        Yes ) git clone https://github.com/TheArk99/dmenu.git ${home}/.config/ ; cd ${home}/.config/dmenu ; sudo make clean install ; echo "dmenu is Now installed" ; break;;
+        No ) break;;
     esac
   done
 else
-  echo "\nyou have dmenu already installed,"
-  echo "\nnothing to do..."
+  echo "
+You have dmenu already installed,"
+  echo "Nothing to do...
+  "
+fi
+
+#installs fonts for the system
+fontgit=$(cd /etc/fonts/ ; git remote show origin | grep "Fetch")
+if [ "$fontgit" != "  Fetch URL: https://github.com/TheArk99/fonts.git" ]
+then
+  echo "fonts are Not installed, do You want to install them?"
+  select yn in "Yes" "No"; do
+    case $yn in
+        Yes ) sudo git clone https://github.com/TheArk99/fonts.git /etc/ ; fc-cache -f -v ; break;;
+        No ) break;;
+    esac
+  done
+else
+  echo "
+You have arch-dot-files already installed,"
+  echo "Nothing to do...
+  "
+fi
+
+
+#installs the git repo of extensions for urxvt to make it usable
+if [[ ! -f /lib64/urxvt/perl/resize-font ]]
+then
+  echo "urxvt extensions are Not installed, do You want to install them?"
+  select yn in "Yes" "No"; do
+    case $yn in
+        Yes ) sudo git clone https://github.com/TheArk99/URxvt-perl-extensions.git /lib64/urxvt/ ; cd /lib64/urxvt/ ; sudo cp -a URxvt-perl-extensions/. /ib64/urxvt/perl/ ; sudo rm -rf /lib64/urxvt/URxvt-perl-extensions ;break;;
+        No ) break;;
+    esac
+  done
+else
+  echo "
+You have urxvt-extenstions are already installed,"
+  echo "Nothing to do...
+  "
 fi
