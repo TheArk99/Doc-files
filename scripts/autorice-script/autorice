@@ -6,14 +6,16 @@ gitisthere=$(cd ${home} ; git remote show origin | grep "Fetch")
 
 if [ "$gitisthere" != "  Fetch URL: https://github.com/TheArk99/Arch-dot-files.git" ]
 then
-  echo "dot files are Not installed, do You want to install them?"
+  echo "
+dot files are Not installed, do You want to install them?"
   select yn in "Yes" "No"; do
     case $yn in
         Yes ) git clone https://github.com/TheArk99/Arch-dot-files.git ${home}/ ;
           cd ${home} ;
           cp -a Arch-dot-files/. ${home} ;
           rm -rf ${home}/Arch-dot-files ;
-          echo "whould You like to install all apps from the installed-apps.txt?" ;
+          echo "
+whould You like to install all apps from the installed-apps.txt?" ;
           select yn in "Yes" "No"; do
             case $yn in
               Yes ) pacman -Syu --needed $(comm -12 <(pacman -Slq | sort) <(sort ~/installed-apps.txt)) --noconfirm ;
@@ -40,7 +42,8 @@ fi
 #installs wallpappers
 if [[ ! -d ${home}/Pictures/wallpapers ]]
 then
-  echo "wallpappers are not installed, do you wan to install them?"
+  echo "
+wallpappers are not installed, do you wan to install them?"
   select yn in "Yes" "No"; do
     case $yn in
         Yes ) git clone https://github.com/TheArk99/wallpappers.git ${home}/Pictures/
@@ -139,7 +142,8 @@ fi
 fontgit=$(cd /etc/fonts/ ; git remote show origin | grep "Fetch")
 if [ "$fontgit" != "  Fetch URL: https://github.com/TheArk99/fonts.git" ]
 then
-  echo "fonts are Not installed, do You want to install them?"
+  echo "
+fonts are not installed, do You want to install them?"
   select yn in "Yes" "No"; do
     case $yn in
         Yes ) sudo git clone https://github.com/TheArk99/fonts.git /etc/ ;
@@ -159,7 +163,8 @@ fi
 #installs the git repo of extensions for urxvt to make it usable
 if [[ ! -f /lib64/urxvt/perl/resize-font ]]
 then
-  echo "urxvt extensions are Not installed, do You want to install them?"
+  echo "
+urxvt extensions are Not installed, do You want to install them?"
   select yn in "Yes" "No"; do
     case $yn in
         Yes ) sudo git clone https://github.com/TheArk99/URxvt-perl-extensions.git /lib64/urxvt/ ;
@@ -173,6 +178,26 @@ then
 else
   echo "
 You have URxvt-extenstions already installed,"
+  echo "Nothing to do...
+  "
+fi
+
+
+diffs=$(diff ${home}/Documents/scripts/autorice-script/pacman.conf /etc/pacman.conf)
+Diffs=($diffs)
+if [ "$Diffs" != "" ]
+then
+  echo "
+Do you want to replace default pacman.conf?"
+  select yn in "Yes" "No"; do
+    case $yn in
+        Yes ) sudo rm -rf /etc/pacman.conf ; sudo cp ${home}/Documents/scripts/autorice-script/pacman.conf /etc/ ; break;;
+        No ) break;;
+    esac
+  done
+else
+  echo "
+pacman.conf is to your specs,"
   echo "Nothing to do...
   "
 fi
