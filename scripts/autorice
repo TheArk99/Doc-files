@@ -1,0 +1,62 @@
+#!/bin/bash
+
+home='/home/'$USER''
+gitIsThere='Fetch URL: https://github.com/TheArk99/Arch-dot-files.git'
+
+if [ "$gitIsThere" != "Fetch URL: https://github.com/TheArk99/Arch-dot-files.git" ]
+then
+  echo "dot files are not installed, do you want to install them?"
+  select yn in "Yes" "No"; do
+    case $yn in
+        Yes ) git clone https://github.com/TheArk99/Arch-dot-files.git ${home}/ ; cd ${home}/.config/dwm ; sudo make clean install ; echo "dwm is now installed" ; break;;
+        No ) exit;;
+    esac
+  done
+else
+  echo "\nyou have Arch-dot-files already installed,\n"
+  echo "nothing to do..."
+fi
+
+if [[ ! -d ${home}/.config/dwm ]]
+then
+  echo "dwm is not installed, do you want to install it?"
+  select yn in "Yes" "No"; do
+    case $yn in
+        Yes ) git clone https://github.com/TheArk99/dwm.git ${home}/.config/ ; cd ${home}/.config/dwm ; sudo make clean install ; echo "dwm is now installed" ; break;;
+        No ) exit;;
+    esac
+  done
+else
+  echo "\nyou have dwm already installed,"
+  echo "nothing to do..."
+fi
+
+
+if [[ ! -d ${home}/.config/slstatus ]]
+then
+  echo "slstatus is not installed, do you want to install it?"
+  select yn in "Yes" "No"; do
+    case $yn in
+        Yes ) git clone https://github.com/TheArk99/slstatus.git ${home}/.config/ ; cd ${home}/.config/slstatus ; sudo make clean install ; echo "slstatus is now installed" ; break;;
+        No ) exit;;
+    esac
+  done
+else
+  echo "\nyou have slstatus already installed,"
+  echo "nothing to do..."
+fi
+
+
+if [[ ! -d ${home}/.config/dmenu ]]
+then
+  echo "dwm is not installed, do you want to install it?"
+  select yn in "Yes" "No"; do
+    case $yn in
+        Yes ) git clone https://github.com/TheArk99/dmenu.git ${home}/.config/ ; cd ${home}/.config/dmenu ; sudo make clean install ; echo "dmenu is now installed" ; break;;
+        No ) exit;;
+    esac
+  done
+else
+  echo "\nyou have dmenu already installed,"
+  echo "\nnothing to do..."
+fi
