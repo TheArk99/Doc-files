@@ -37,6 +37,36 @@ You have Arch-dot-files already installed,"
 fi
 
 
+#installs wallpappers
+if [[ ! -d ${home}/Pictures/wallpapers ]]
+then
+  echo "wallpappers are not installed, do you wan to install them?"
+  select yn in "Yes" "No"; do
+    case $yn in
+        Yes ) git clone https://github.com/TheArk99/wallpappers.git ${home}/Pictures/
+          break;;
+        No ) break;;
+    esac
+  done
+else
+  echo "
+Your wallpappers are already installed,"
+  echo "Nothing to do...
+  "
+fi
+
+#chooses the wallpapper
+if [[ ! -f ${home}/.cache/wal/colors-wal-dwm.h ]]
+then
+  ranger ${home}/Pictures/wallpappers/
+else
+  echo "
+Wal is set,"
+  echo "Nothing to do...
+  "
+fi
+
+
 if [[ ! -d ${home}/.config/dwm ]]
 then
   echo "
@@ -120,7 +150,7 @@ then
   done
 else
   echo "
-You have arch-dot-files already installed,"
+Your fonts are installed,"
   echo "Nothing to do...
   "
 fi
@@ -142,7 +172,7 @@ then
   done
 else
   echo "
-You have URxvt-extenstions are already installed,"
+You have URxvt-extenstions already installed,"
   echo "Nothing to do...
   "
 fi
