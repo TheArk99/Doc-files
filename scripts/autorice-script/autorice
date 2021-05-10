@@ -32,7 +32,7 @@ then
 dot files are Not installed, do You want to install them?"
   select yn in "Yes" "No"; do
     case $yn in
-        Yes ) git clone https://github.com/TheArk99/Arch-dot-files.git ${home}/ ;
+        Yes ) git clone https://github.com/TheArk99/Arch-dot-files.git ${home}/ &
           cd ${home} ;
           cp -a Arch-dot-files/. ${home} ;
           rm -rf ${home}/Arch-dot-files ;
@@ -69,7 +69,7 @@ then
 wallpappers are not installed, do you wan to install them?"
   select yn in "Yes" "No"; do
     case $yn in
-        Yes ) git clone https://github.com/TheArk99/wallpappers.git ${home}/Pictures/
+        Yes ) git clone https://github.com/TheArk99/wallpappers.git ${home}/Pictures/ &
           break;;
         No ) break;;
     esac
@@ -99,7 +99,7 @@ then
 dwm is Not installed, do You want to install it?"
   select yn in "Yes" "No"; do
     case $yn in
-        Yes ) git clone https://github.com/TheArk99/dwm.git ${home}/.config/ ;
+        Yes ) git clone https://github.com/TheArk99/dwm.git ${home}/.config/ &
           cd ${home}/.config/dwm ;
           sudo make clean install ;
           echo "dwm is Now installed" ;
@@ -121,7 +121,7 @@ then
 slstatus is Not installed, do You want to install it?"
   select yn in "Yes" "No"; do
     case $yn in
-        Yes ) git clone https://github.com/TheArk99/slstatus.git ${home}/.config/ ;
+        Yes ) git clone https://github.com/TheArk99/slstatus.git ${home}/.config/ &
           cd ${home}/.config/slstatus ;
           sudo ln pacmanUpgrades /bin/ ;
           sudo ln forecast /bin/ ;
@@ -146,7 +146,7 @@ then
 dwm is Not installed, do You want to install it?"
   select yn in "Yes" "No"; do
     case $yn in
-        Yes ) git clone https://github.com/TheArk99/dmenu.git ${home}/.config/ ;
+        Yes ) git clone https://github.com/TheArk99/dmenu.git ${home}/.config/ &
           cd ${home}/.config/dmenu ;
           sudo make clean install ;
           echo "dmenu is Now installed" ;
@@ -169,7 +169,7 @@ then
 fonts are not installed, do You want to install them?"
   select yn in "Yes" "No"; do
     case $yn in
-        Yes ) sudo git clone https://github.com/TheArk99/fonts.git /etc/ ;
+        Yes ) sudo git clone https://github.com/TheArk99/fonts.git /etc/ &
           fc-cache -f -v ;
           break;;
         No ) break;;
@@ -190,7 +190,7 @@ then
 urxvt extensions are Not installed, do You want to install them?"
   select yn in "Yes" "No"; do
     case $yn in
-        Yes ) sudo git clone https://github.com/TheArk99/URxvt-perl-extensions.git /lib64/urxvt/ ;
+        Yes ) sudo git clone https://github.com/TheArk99/URxvt-perl-extensions.git /lib64/urxvt/ &
           cd /lib64/urxvt/ ;
           sudo rm -rf perl/*
           sudo cp -a URxvt-perl-extensions/. /lib64/urxvt/perl/ ;
