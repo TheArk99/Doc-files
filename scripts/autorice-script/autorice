@@ -32,18 +32,18 @@ dot files are Not installed, do You want to install them?"
     case $yn in
         Yes ) cd $HOME
           git clone https://github.com/TheArk99/Arch-dot-files.git &
-          cp -a Arch-dot-files/. $HOME ;
+          cp -a Arch-dot-files/. $HOME &
           rm -rf $HOME/Arch-dot-files ;
           echo "
 whould You like to install all apps from the installed-apps.txt?" ;
           select yn in "Yes" "No"; do
             case $yn in
-              Yes ) pacman -Syu --needed $(comm -12 <(pacman -Slq | sort) <(sort ~/installed-apps.txt)) --noconfirm ;
-                cd $HOME ;
-                git clone https://aur.archlinux.org/paru.git ;
+              Yes ) cd $HOME
+                pacman -Syu --needed $(comm -12 <(pacman -Slq | sort) <(sort ~/installed-apps.txt)) --noconfirm &
+                git clone https://aur.archlinux.org/paru.git &
                 cd $HOME/paru ;
                 makepkg -si &
-                paru -Syu --needed - < ~/installed-apps.txt --noconfirm ;
+                paru -Syu --needed - < ~/installed-apps.txt --noconfirm &
                 break;;
               No ) break;;
             esac
