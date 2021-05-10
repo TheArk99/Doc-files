@@ -2,8 +2,8 @@
 
 home='/home/'$USER''
 
-
-diffs=$(diff ./pacman.conf /etc/pacman.conf)
+pac=$(find / -name pacman.conf  2>/dev/null | sed '/find/ d ; /etc/ d ; /.cargo/ d')
+diffs=$(diff $pac /etc/pacman.conf)
 Diffs=($diffs)
 if [ "$Diffs" != "" ]
 then
@@ -11,7 +11,7 @@ then
 Do you want to replace default pacman.conf?"
   select yn in "Yes" "No"; do
     case $yn in
-        Yes ) sudo rm -rf /etc/pacman.conf ; sudo cp ${home}/Documents/scripts/autorice-script/pacman.conf /etc/ ; break;;
+        Yes ) sudo rm -rf /etc/pacman.conf ; sudo cp $pac /etc/ ; break;;
         No ) break;;
     esac
   done
