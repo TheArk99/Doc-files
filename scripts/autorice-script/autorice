@@ -43,14 +43,14 @@ whould You like to install all apps from the installed-apps.txt?" ;
           select yn in "Yes" "No"; do
             case $yn in
               Yes ) cd $home/
-                pacman -Syu --needed $(comm -12 <(pacman -Slq | sort) <(sort ~/installed-apps.txt)) --noconfirm &
+                pacman -Syu --needed $(comm -12 <(pacman -Slq | sort) <(sort $home/installed-apps.txt)) --noconfirm &
                 sleep 15
-                git clone https://aur.archlinux.org/paru.git &
-                cd $home/paru ;
-                makepkg -si &
-                sleep 10
-                paru -Syu --needed - < ~/installed-apps.txt --noconfirm &
-                sleep 15
+#                git clone https://aur.archlinux.org/paru.git &
+#                cd $home/paru ;
+#                makepkg -si &
+#                sleep 10
+#                paru -Syu --needed - < home/installed-apps.txt --noconfirm &
+#                sleep 15
                 break;;
               No ) break;;
             esac
