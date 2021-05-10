@@ -33,7 +33,7 @@ dot files are Not installed, do You want to install them?"
         Yes ) cd $HOME
           git clone https://github.com/TheArk99/Arch-dot-files.git &
           sleep 15
-          cp -a Arch-dot-files/. $HOME &
+          sudo cp -a Arch-dot-files/. $HOME &
           sleep 5
           rm -rf $HOME/Arch-dot-files ;
           echo "
