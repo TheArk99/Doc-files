@@ -84,7 +84,7 @@ fi
 #chooses the wallpapper
 if [[ ! -f ${home}/.cache/wal/colors-wal-dwm.h ]]
 then
-  ranger ${home}/Pictures/wallpappers/
+  ranger ${home}/Pictures/wallpappers/ &
 else
   echo "
 Wal is set,"
@@ -99,7 +99,8 @@ then
 dwm is Not installed, do You want to install it?"
   select yn in "Yes" "No"; do
     case $yn in
-        Yes ) git clone https://github.com/TheArk99/dwm.git ${home}/.config/ &
+        Yes ) cd $HOME/.config/
+          git clone https://github.com/TheArk99/dwm.git &
           cd ${home}/.config/dwm ;
           sudo make clean install ;
           echo "dwm is Now installed" ;
