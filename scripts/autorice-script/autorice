@@ -1,7 +1,5 @@
 #!/bin/bash
 
-home='/home/'$USER''
-
 pac=$(find / -name pacman.conf  2>/dev/null | sed '/find/ d ; /etc/ d ; /.cargo/ d')
 diffs=$(diff $pac /etc/pacman.conf)
 Diffs=($diffs)
@@ -24,7 +22,7 @@ fi
 
 
 
-gitisthere=$(cd ${home} ; git remote show origin | grep "Fetch")
+gitisthere=$(cd $HOME ; git remote show origin | grep "Fetch")
 
 if [ "$gitisthere" != "  Fetch URL: https://github.com/TheArk99/Arch-dot-files.git" ]
 then
@@ -32,18 +30,18 @@ then
 dot files are Not installed, do You want to install them?"
   select yn in "Yes" "No"; do
     case $yn in
-        Yes ) git clone https://github.com/TheArk99/Arch-dot-files.git ${home}/ &
-          cd ${home} ;
-          cp -a Arch-dot-files/. ${home} ;
-          rm -rf ${home}/Arch-dot-files ;
+        Yes ) cd $HOME
+          git clone https://github.com/TheArk99/Arch-dot-files.git &
+          cp -a Arch-dot-files/. $HOME ;
+          rm -rf $HOME/Arch-dot-files ;
           echo "
 whould You like to install all apps from the installed-apps.txt?" ;
           select yn in "Yes" "No"; do
             case $yn in
               Yes ) pacman -Syu --needed $(comm -12 <(pacman -Slq | sort) <(sort ~/installed-apps.txt)) --noconfirm ;
-                cd ${home} ;
+                cd $HOME ;
                 git clone https://aur.archlinux.org/paru.git ;
-                cd paru ;
+                cd $HOME/paru ;
                 makepkg -si &
                 paru -Syu --needed - < ~/installed-apps.txt --noconfirm ;
                 break;;
@@ -63,13 +61,14 @@ fi
 
 
 #installs wallpappers
-if [[ ! -d ${home}/Pictures/wallpapers ]]
+if [[ ! -d $HOME/Pictures/wallpapers ]]
 then
   echo "
 wallpappers are not installed, do you wan to install them?"
   select yn in "Yes" "No"; do
     case $yn in
-        Yes ) git clone https://github.com/TheArk99/wallpappers.git ${home}/Pictures/ &
+        Yes ) cd $HOME/Pictures/
+          git clone https://github.com/TheArk99/wallpappers.git &
           break;;
         No ) break;;
     esac
@@ -82,9 +81,9 @@ Your wallpappers are already installed,"
 fi
 
 #chooses the wallpapper
-if [[ ! -f ${home}/.cache/wal/colors-wal-dwm.h ]]
+if [[ ! -f $HOME/.cache/wal/colors-wal-dwm.h ]]
 then
-  ranger ${home}/Pictures/wallpappers/ &
+  ranger $HOME/Pictures/wallpappers/ &
 else
   echo "
 Wal is set,"
@@ -93,7 +92,7 @@ Wal is set,"
 fi
 
 
-if [[ ! -d ${home}/.config/dwm ]]
+if [[ ! -d $HOME/.config/dwm ]]
 then
   echo "
 dwm is Not installed, do You want to install it?"
@@ -101,8 +100,8 @@ dwm is Not installed, do You want to install it?"
     case $yn in
         Yes ) cd $HOME/.config/
           git clone https://github.com/TheArk99/dwm.git &
-          cd ${home}/.config/dwm ;
-          sudo make clean install ;
+          cd $HOME/.config/dwm/ ;
+          sudo make clean install &
           echo "dwm is Now installed" ;
           break;;
         No ) break;;
@@ -116,18 +115,19 @@ You have dwm already installed,"
 fi
 
 
-if [[ ! -d ${home}/.config/slstatus ]]
+if [[ ! -d $HOME/.config/slstatus ]]
 then
   echo "
 slstatus is Not installed, do You want to install it?"
   select yn in "Yes" "No"; do
     case $yn in
-        Yes ) git clone https://github.com/TheArk99/slstatus.git ${home}/.config/ &
-          cd ${home}/.config/slstatus ;
-          sudo ln pacmanUpgrades /bin/ ;
-          sudo ln forecast /bin/ ;
-          sudo ln moonphase /bin/ ;
-          sudo make clean install ;
+        Yes ) cd $HOME/.config/
+          git clone https://github.com/TheArk99/slstatus.git &
+          cd $HOME/.config/slstatus ;
+          sudo ln pacmanUpgrades /bin/ &
+          sudo ln forecast /bin/ &
+          sudo ln moonphase /bin/ &
+          sudo make clean install &
           echo "slstatus is Now installed" ;
           break;;
         No ) break;;
@@ -141,15 +141,16 @@ You have slstatus already installed,"
 fi
 
 
-if [[ ! -d ${home}/.config/dmenu ]]
+if [[ ! -d $HOME/.config/dmenu ]]
 then
   echo "
-dwm is Not installed, do You want to install it?"
+dmenu is Not installed, do You want to install it?"
   select yn in "Yes" "No"; do
     case $yn in
-        Yes ) git clone https://github.com/TheArk99/dmenu.git ${home}/.config/ &
-          cd ${home}/.config/dmenu ;
-          sudo make clean install ;
+        Yes ) cd $HOME/.config
+          git clone https://github.com/TheArk99/dmenu.git ${home}/.config/ &
+          cd $HOME/.config/dmenu ;
+          sudo make clean install &
           echo "dmenu is Now installed" ;
           break;;
         No ) break;;
@@ -170,7 +171,8 @@ then
 fonts are not installed, do You want to install them?"
   select yn in "Yes" "No"; do
     case $yn in
-        Yes ) sudo git clone https://github.com/TheArk99/fonts.git /etc/ &
+        Yes ) cd /etc/
+          sudo git clone https://github.com/TheArk99/fonts.git &
           fc-cache -f -v ;
           break;;
         No ) break;;
@@ -191,10 +193,10 @@ then
 urxvt extensions are Not installed, do You want to install them?"
   select yn in "Yes" "No"; do
     case $yn in
-        Yes ) sudo git clone https://github.com/TheArk99/URxvt-perl-extensions.git /lib64/urxvt/ &
-          cd /lib64/urxvt/ ;
-          sudo rm -rf perl/*
-          sudo cp -a URxvt-perl-extensions/. /lib64/urxvt/perl/ ;
+        Yes ) cd /lib64/urxt/
+          sudo git clone https://github.com/TheArk99/URxvt-perl-extensions.git &
+          sudo rm -rf perl/* &
+          sudo cp -a URxvt-perl-extensions/. /lib64/urxvt/perl/ &
           sudo rm -rf /lib64/urxvt/URxvt-perl-extensions ;
           break;;
         No ) break;;
