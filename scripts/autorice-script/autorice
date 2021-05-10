@@ -20,7 +20,7 @@ pacman.conf is to your specs,"
   "
 fi
 
-
+sleep 5
 
 gitisthere=$(cd $HOME ; git remote show origin | grep "Fetch")
 
@@ -60,6 +60,8 @@ You have Arch-dot-files already installed,"
 fi
 
 
+sleep 5
+
 #installs wallpappers
 if [[ ! -d $HOME/Pictures/wallpapers ]]
 then
@@ -80,6 +82,8 @@ Your wallpappers are already installed,"
   "
 fi
 
+sleep 5
+
 #chooses the wallpapper
 if [[ ! -f $HOME/.cache/wal/colors-wal-dwm.h ]]
 then
@@ -90,6 +94,8 @@ Wal is set,"
   echo "Nothing to do...
   "
 fi
+
+sleep 5
 
 
 if [[ ! -d $HOME/.config/dwm ]]
@@ -114,6 +120,8 @@ You have dwm already installed,"
   "
 fi
 
+
+sleep 5
 
 if [[ ! -d $HOME/.config/slstatus ]]
 then
@@ -141,6 +149,9 @@ You have slstatus already installed,"
 fi
 
 
+sleep 5
+
+
 if [[ ! -d $HOME/.config/dmenu ]]
 then
   echo "
@@ -163,6 +174,9 @@ You have dmenu already installed,"
   "
 fi
 
+
+sleep 5
+
 #installs fonts for the system
 fontgit=$(cd /etc/fonts/ ; git remote show origin | grep "Fetch")
 if [ "$fontgit" != "  Fetch URL: https://github.com/TheArk99/fonts.git" ]
@@ -184,6 +198,8 @@ Your fonts are installed,"
   echo "Nothing to do...
   "
 fi
+
+sleep 5
 
 
 #installs the git repo of extensions for urxvt to make it usable
