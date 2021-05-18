@@ -5,8 +5,8 @@ stat="/home/noah/.config/slstatus"
 make="make clean install"
 
 cd $dwm &&
-sudo $make;
+sudo $make&&
 cd $dmenu &&
-sudo $make;
+sudo $make&&
 cd $stat &&
 sudo $make
