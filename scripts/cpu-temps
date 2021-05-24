@@ -1,0 +1,9 @@
+#this will hopefully get temp cpu stats only
+
+temps=$(sensors | grep "Core 0" | sed 's/^...............//g' | sed 's/ //' | sed 's/ (high//g' | cut -d " " -f1 | sed 's/C/ C/g')
+
+while true;
+  do
+  tput clear;
+  echo "CPU Temps : " ${temps} | figlet ;
+  sleep 1 ; done
