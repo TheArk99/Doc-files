@@ -1,12 +1,14 @@
 #this will hopefully get temp cpu stats only
-
-temps1=$(sensors | grep "Core 0" | sed 's/^...............//g' | sed 's/ //' | sed 's/ (high//g' | cut -d " " -f1 | sed 's/C//g')
-temps2=$(sensors | grep "Core 1" | sed 's/^...............//g' | sed 's/ //' | sed 's/ (high//g' | cut -d " " -f1 | sed 's/C//g')
-avg=$(echo "("${temps1}"+"${temps2}")/2")
-echo ${avg}
+while true;
+  do
+  temps1=$(sensors | grep "Core 0" | sed 's/^...............//g' | sed 's/ //' | sed 's/ (high//g' | cut -d " " -f1 | sed 's/C//g')
+  temps2=$(sensors | grep "Core 1" | sed 's/^...............//g' | sed 's/ //' | sed 's/ (high//g' | cut -d " " -f1 | sed 's/C//g')
+  avg=$(echo "("${temps1}"+"${temps2}")/2" | bc)
+#echo ${avg}
 
 #while true;
 #  do
 #  tput clear;
-#  echo "CPU : " ${avg} | figlet ;
-#  sleep 1 ; done
+  echo "CPU : " ${avg}"c" | figlet ;
+  sleep 1 ;
+  done
