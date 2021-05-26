@@ -1,0 +1,17 @@
+molarity == moles / volume
+
+6M == 6mol / 1000 ml
+
+18M == 18mol / 1000 ml
+
+.5M == .5mol / 1000 ml
+
+use these in conversion factors
+
+so for number 1.(6M) ...
+
+(38ml / 1 ) * (6 mol / 1000 ml) == something in mole
+
+so for number 2 (18M) ...
+
+(175 mol / 1 ) * (1000 ml / 18 mol) == something in ml
