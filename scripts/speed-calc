@@ -17,7 +17,7 @@ printf "\nWhat was the time? Include units with a space away from numbes... " &&
 read time &&
 timeNo=$(echo $time | cut -d " " -f1)
 
-speed=$(echo ${distNo}"/"${timeNo} | bc)
+speed=$(echo ${distNo}"/"${timeNo} | bc -l | sed '/\./ s/\.\{0,1\}0\{1,\}$//')
 distU=$(echo $dist | cut -d " " -f2)
 timeU=$(echo $time | cut -d " " -f2)
 
