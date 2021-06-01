@@ -4,6 +4,7 @@ urxvt -e "cava" &
 sleep .5
 exec "urxvt" &
 sleep .5
-urxvt -e "/home/noah/Documents/scripts/./clock.sh" &
+urxvt -e "tty-clock" &
+#urxvt -e "/home/noah/Documents/scripts/./clock.sh" &
 sleep .5
 exec "urxvt"
