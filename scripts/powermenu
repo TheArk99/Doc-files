@@ -1,0 +1,33 @@
+#!/bin/bash
+
+optionsslock="Cancel\nShutdown\nRestart\nSleep\nLock"
+
+options="Cancel\nShutdown\nRestart\nSleep"
+
+
+if [[ ! -f /bin/slock ]]
+then
+  choice=$(echo -e $options | dmenu -i -p 'PowerMenu: ')
+  if [ $choice = "Shutdown" ]; then
+      poweroff
+  elif [ $choice = "Restart" ]; then
+      reboot
+  elif [ $choice = "Sleep" ]; then
+      systemctl suspend
+  elif [ $choice = "Cancel" ]; then
+      exit
+  fi
+else
+   choice=$(echo -e $optionsslock | dmenu -i -p 'PowerMenu: ')
+  if [ $choice = "Shutdown" ]; then
+      poweroff
+  elif [ $choice = "Restart" ]; then
+      reboot
+  elif [ $choice = "Sleep" ]; then
+      systemctl suspend
+  elif [ $choice = "Lock" ]; then
+      slock
+  elif [ $choice = "Cancel" ]; then
+      exit
+  fi
+fi
