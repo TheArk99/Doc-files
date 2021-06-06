@@ -1,0 +1,7 @@
+#!/bin/bash
+
+wallpapper=$(cd ~/Pictures/wallpapers/ ; ls | shuf | head -1)
+
+printf $wallpapper
+
+cd ~/Pictures/wallpapers/ && wal -i $wallpapper && compileSuckless
