@@ -1,0 +1,27 @@
+#!/bin/bash
+
+str="URL\nSearch"
+choice=$(echo -e $str | dmenu -i -p 'SEARCH: ')
+
+if [[ $choice = '' ]]; then
+  exit
+else
+  if [[ $choice = 'URL' ]]; then
+    search=$(cat bookmarks.txt | dmenu -i -p 'SEARCH: ')
+
+    if [[ ${search} = '' ]]; then
+      exit
+    else
+      sh ${BROWSER} ${search}
+    fi
+  else
+    look=$(echo 'LOOK UP SOMETHING' | dmenu -i -p 'SEARCH: ')
+
+    if [[ ${look} = '' ]]; then
+      exit
+    else
+      lookup=$(tuxi $look)
+      echo $lookup
+    fi
+  fi
+fi
