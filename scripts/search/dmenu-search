@@ -7,7 +7,7 @@ if [[ $choice = '' ]]; then
   exit
 else
   if [[ $choice = 'URL' ]]; then
-    search=$(cat bookmarks.txt | dmenu -i -p 'SEARCH: ')
+    search=$(cat bookmarks.txt | dmenu -i -p 'URL SEARCH: ')
 
     if [[ ${search} = '' ]]; then
       exit
@@ -15,9 +15,11 @@ else
       sh ${BROWSER} ${search}
     fi
   else
-    look=$(echo 'LOOK UP SOMETHING' | dmenu -i -p 'SEARCH: ')
+    look=$(echo 'Cancel' | dmenu -i -p 'TUXI SEARCH: ')
 
-    if [[ ${look} = '' ]]; then
+    if [[ $look = 'Cancel' ]]; then
+      exit
+    elif [[ ${look} = '' ]]; then
       exit
     else
       lookup=$(tuxi $look)
