@@ -1,3 +1,5 @@
+#!/bin/bash
+
 #this will hopefully get temp cpu stats only
 while true;
   do
