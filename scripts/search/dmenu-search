@@ -7,7 +7,8 @@ if [[ $choice = '' ]]; then
   exit
 else
   if [[ $choice = 'URL' ]]; then
-    search=$(cat bookmarks.txt | dmenu -i -p 'URL SEARCH: ')
+    bookmarks=$(locate bookmarks.txt)
+    search=$(cat $bookmarks | dmenu -i -p 'URL SEARCH: ')
 
     if [[ ${search} = '' ]]; then
       exit
