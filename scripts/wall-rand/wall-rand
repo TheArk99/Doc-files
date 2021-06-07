@@ -2,7 +2,9 @@
 
 wallpapper=$(cd ~/Pictures/wallpapers/ ; ls | shuf | head -1)
 
-echo $wallpapper
+echo $wallpapper ;
+current=$(locate current-wallpapper.txt)
+echo $wallpapper > $current &&
 
 cd ~/Pictures/wallpapers/ && wal -i $wallpapper && cd $HOME && compileSuckless &&
 
