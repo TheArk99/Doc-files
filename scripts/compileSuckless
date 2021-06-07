@@ -5,9 +5,10 @@ stat="/home/noah/.config/slstatus"
 make="make clean install"
 
 cd $dwm &&
-  sudo $make || (echo "FAILED TO COMPILE DWM" && exit;)
+  sudo $make || exit;
+
 cd $dmenu &&
-  sudo $make || (echo "FAILED TO COMPILE DWM" && exit;)
+  sudo $make || exit;
 
 cd $stat &&
-  sudo $make || (echo "FAILED TO COMPILE DWM" && exit)
+  sudo $make || exit

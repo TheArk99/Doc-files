@@ -2,6 +2,18 @@
 
 wallpapper=$(cd ~/Pictures/wallpapers/ ; ls | shuf | head -1)
 
-printf $wallpapper
+echo $wallpapper
 
-cd ~/Pictures/wallpapers/ && wal -i $wallpapper && compileSuckless
+cd ~/Pictures/wallpapers/ && wal -i $wallpapper && compileSuckless &&
+
+#do this if dwm is in a while loop
+ifloop=$(grep "dwm >/dev/null 2>&1" ~/.xinitrc)
+loop="  dwm >/dev/null 2>&1"
+dwm=$(pidof dwm)
+if [[ $ifloop = $loop && $dwm != '' ]]; then
+  killall dwm || echo "THERE IS A ERROR"
+elif [[ $dwm = '' ]]; then
+  startx || echo "THERE IS A ERROR"
+else
+  echo "THERE IS A ERROR"
+fi
