@@ -3,8 +3,6 @@
 wallpapper=$(cd ~/Pictures/wallpapers/ ; ls | shuf | head -1)
 
 echo $wallpapper ;
-current=$(locate current-wallpapper.txt)
-echo $wallpapper > $current &&
 
 cd ~/Pictures/wallpapers/ && wal -i $wallpapper && cd $HOME && compileSuckless &&
 
@@ -19,3 +17,7 @@ elif [[ $dwm = '' ]]; then
 else
   echo "THERE IS A ERROR OR SOMETHING UNEXPECTED HAPPENDED"
 fi
+
+current=$(locate current-wallpapper.txt)
+wallloc=$(locate $wallpapper | grep "wallpapers" | sed '/.cache/d' | sed 's/^$//g')
+echo $wallloc > $current
