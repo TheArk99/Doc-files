@@ -5,10 +5,57 @@ dwm=$(pidof dwm)
 current=$(locate current-wallpapper.txt)
 favorite=$(locate favorite-wallpappers.txt)
 loop="  dwm >/dev/null 2>&1"
+link="https://source.unsplash.com/random/"
+if [ -z ${XDG_CONFIG_HOME+x} ]; then
+  XDG_CONFIG_HOME="${HOME}/.config"
+fi
+if [ -z ${XDG_CACHE_HOME+x} ]; then
+  XDG_CACHE_HOME="${HOME}/.cache"
+fi
+  confdir="${XDG_CONFIG_HOME}/styli.sh"
+if [ ! -d "${confdir}" ]; then
+  mkdir -p "${confdir}"
+fi
+  cachedir="${XDG_CACHE_HOME}/styli.sh"
+if [ ! -d "${cachedir}" ]; then
+  mkdir -p "${cachedir}"
+fi
+wallpaper="${cachedir}/wallpaper.jpg"
+
+unsplash() {
+  local search="${search// /_}"
+  if [ ! -z $height ] || [ ! -z $width ]; then
+    link="${link}${width}x${height}";
+  else
+    link="${link}1920x1080";
+  fi
+  if [ ! -z $search ]; then
+    link="${link}/?${search}"
+  fi
+    wget -q -O ${wallpaper} $link
+}
+type_check() {
+    mime_types=("image/bmp" "image/jpeg" "image/gif" "image/png" "image/heic")
+    isType=false
+
+    for requiredType in "${mime_types[@]}"
+    do
+        imageType=$(file --mime-type  ${wallpaper} | awk '{print $2}')
+        if [ "$requiredType" = "$imageType" ]; then
+            isType=true
+            break
+        fi
+    done
+
+    if [ $isType = false ]; then
+        echo "MIME-Type missmatch. Downloaded file is not an image!"
+        exit 1
+    fi
+}
 
 echo "What would you like to do?"
 choice=("Get a new wallpapper" "See current wallpapper" "Use favorite wallpappers"
-  "Add current wallpapper to favorites" "exit")
+  "Add current wallpapper to favorites" "Get a wallpappper from unsplash" "Get a wallpapper from reddit" "Search for a wallpaper in unsplash" "exit")
 
 select choices in "${choice[@]}"; do
   case $choices in
@@ -56,6 +103,102 @@ Try adding a some in the options"
       echo $(cat $current) >> $favorite
       echo $(cat $current) "Was added to your favorits file!"
       gawk -i inplace '!seen[$0]++' $favorite
+      break;;
+    "Get a wallpappper from unsplash")
+      unsplash
+      type_check
+      wal -c
+      wal -i ${wallpaper} && cd $HOME && compileSuckless &&
+      if [[ $ifloop = $loop && $dwm != '' ]]; then
+        killall dwm || echo "THERE IS A ERROR WITH KILLING DWM"
+      elif [[ $dwm = '' ]]; then
+        startx || echo "THERE IS A ERROR WITH STARTING XORG"
+      else
+        echo "THERE IS A ERROR OR SOMETHING UNEXPECTED HAPPENDED"
+      fi
+      echo $wallpaper > $current
+      break;;
+    "Get a wallpapper from reddit")
+      reddit(){
+        subredditDir=$(locate subreddits)
+        useragent="thevinter"
+        timeout=60
+        sort=$2
+        top_time=$3
+       if [ -z $sort   ]; then
+           sort="hot"
+       fi
+       if [ -z $top_time   ]; then
+           top_time=""
+       fi
+       if [ ! -z $1 ]; then
+           sub=$1
+       else
+           if [ ! -f "$subredditDir" ]; then
+               echo "Please install the subreddits file"
+               exit 2
+           fi
+            readarray subreddits < "$subredditDir"
+            a=${#subreddits[@]}
+            b=$(($RANDOM % $a))
+            sub=${subreddits[$b]}
+            sub="$(echo -e "${sub}" | tr -d '[:space:]')"
+       fi
+        url="https://www.reddit.com/r/$sub/$sort/.json?raw_json=1&t=$top_time"
+        echo $url
+        content=`wget -T $timeout -U "$useragent" -q -O - $url`
+        urls=$(echo -n "$content"| jq -r '.data.children[]|select(.data.post_hint|test("image")?) | .data.preview.images[0].source.url')
+        names=$(echo -n "$content"| jq -r '.data.children[]|select(.data.post_hint|test("image")?) | .data.title')
+        ids=$(echo -n "$content"| jq -r '.data.children[]|select(.data.post_hint|test("image")?) | .data.id')
+        arrURLS=($urls)
+        arrNAMES=($names)
+        arrIDS=($ids)
+        wait # prevent spawning too many processes
+        size=${#arrURLS[@]}
+        if [ $size -eq 0 ]; then
+            echo The current subreddit is not valid.
+            exit 1
+        fi
+        idx=$(($RANDOM % $size))
+        target_url=${arrURLS[$idx]}
+        target_name=${arrNAMES[$idx]}
+        target_id=${arrIDS[$idx]}
+        ext=`echo -n "${target_url##*.}"|cut -d '?' -f 1`
+        newname=`echo $target_name | sed "s/^\///;s/\// /g"`_"$subreddit"_$target_id.$ext
+        wget -T $timeout -U "$useragent" --no-check-certificate -q -P down -O ${wallpaper} $target_url &>/dev/null
+      }
+      link="reddit"
+      if [ $link = "reddit" ]; then
+        reddit "$sub"
+      fi
+      type_check
+      wal -c
+      wal -i ${wallpaper} && cd $HOME && compileSuckless &&
+      if [[ $ifloop = $loop && $dwm != '' ]]; then
+        killall dwm || echo "THERE IS A ERROR WITH KILLING DWM"
+      elif [[ $dwm = '' ]]; then
+        startx || echo "THERE IS A ERROR WITH STARTING XORG"
+      else
+        echo "THERE IS A ERROR OR SOMETHING UNEXPECTED HAPPENDED"
+      fi
+      echo $wallpaper > $current
+      break;;
+    "Search for a wallpaper in unsplash")
+      unsplash
+      echo "Search: "
+      read query
+      search=${query}
+      type_check
+      wal -c
+      wal -i ${wallpaper} && cd $HOME && compileSuckless &&
+      if [[ $ifloop = $loop && $dwm != '' ]]; then
+        killall dwm || echo "THERE IS A ERROR WITH KILLING DWM"
+      elif [[ $dwm = '' ]]; then
+        startx || echo "THERE IS A ERROR WITH STARTING XORG"
+      else
+        echo "THERE IS A ERROR OR SOMETHING UNEXPECTED HAPPENDED"
+      fi
+      echo $wallpaper > $current
       break;;
     "exit")
       exit;;
