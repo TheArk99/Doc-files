@@ -1,0 +1,64 @@
+#!/bin/bash
+
+ifloop=$(grep "dwm >/dev/null 2>&1" ~/.xinitrc)
+dwm=$(pidof dwm)
+current=$(locate current-wallpapper.txt)
+favorite=$(locate favorite-wallpappers.txt)
+loop="  dwm >/dev/null 2>&1"
+
+echo "What would you like to do?"
+choice=("Get a new wallpapper" "See current wallpapper" "Use favorite wallpappers"
+  "Add current wallpapper to favorites" "exit")
+
+select choices in "${choice[@]}"; do
+  case $choices in
+    "Get a new wallpapper")
+      wallpapper=$(cd ~/Pictures/wallpapers/ ; ls | shuf | head -1)
+      wallloc=$(locate $wallpapper | grep "wallpapers" | sed '/.cache/d' | sed 's/^$//g')
+      echo $ ;
+      cd ~/Pictures/wallpapers/ && wal -i $wallpapper && cd $HOME && compileSuckless &&
+      #do this if dwm is in a while loop
+      if [[ $ifloop = $loop && $dwm != '' ]]; then
+        killall dwm || echo "THERE IS A ERROR WITH KILLING DWM"
+      elif [[ $dwm = '' ]]; then
+        startx || echo "THERE IS A ERROR WITH STARTING XORG"
+      else
+        echo "THERE IS A ERROR OR SOMETHING UNEXPECTED HAPPENDED"
+      fi
+      echo $wallloc > $current
+      break;;
+    "See current wallpapper")
+      sxiv $(cat $current)
+      break;;
+    "Use favorite wallpappers")
+      fuckthis=$(cat $favorite)
+      if [[ $fuckthis = '' || $fuckthis = ' ' ]]; then
+        printf "\nThere is nothing in the favorites file...
+Try adding a some in the options"
+      else
+        sxiv -t $(cat $favorite) &&
+        printf "\n"
+        cat $favorite &&
+        printf "\nCopy the wallpapper path in the input for the wallpapper you want... " &&
+        read want
+        wal -i $want && cd $HOME && compileSuckless &&
+        if [[ $ifloop = $loop && $dwm != '' ]]; then
+          killall dwm || echo "THERE IS A ERROR WITH KILLING DWM"
+        elif [[ $dwm = '' ]]; then
+          startx || echo "THERE IS A ERROR WITH STARTING XORG"
+        else
+          echo "THERE IS A ERROR OR SOMETHING UNEXPECTED HAPPENDED"
+        fi
+        echo $want > $current
+      fi
+      break;;
+    "Add current wallpapper to favorites")
+      echo $(cat $current) >> $favorite
+      echo $(cat $current) "Was added to your favorits file!"
+      gawk -i inplace '!seen[$0]++' $favorite
+      break;;
+    "exit")
+      exit;;
+    *) echo "Invalid option $REPLY"
+  esac
+done
