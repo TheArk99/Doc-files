@@ -1,3 +1,6 @@
 [submodule "scripts/shell-color-scripts"]
 	path = scripts/shell-color-scripts
 	url = https://github.com/TheArk99/shell-color-scripts.git
+[submodule "scripts/wall-rand"]
+	path = scripts/wall-rand
+	url = https://github.com/TheArk99/wall-rand.git
