@@ -1,0 +1,3 @@
+[submodule "scripts/shell-color-scripts"]
+	path = scripts/shell-color-scripts
+	url = https://github.com/TheArk99/shell-color-scripts.git
