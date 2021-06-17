@@ -7,10 +7,10 @@ arr=($options)
 choice=$(echo -e "${options[@]}" | dmenu -i -p 'scritps: ')
 
 permisions=$(stat -c %A ${dir}${choice})
-per=($permisions)
 echo "$per"
-if [ "$per" != "-rwxr-xr-x" ]; then
+if [ "$permisions" != "-rwxr-xr-x" ]; then
   chmod +x ${dir}${choice}
+  urxvt -e ${dir}${choice}
 fi
 
 urxvt -e ${dir}${choice}
