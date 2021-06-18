@@ -1,0 +1,62 @@
+#!/bin/sh
+
+
+awk 'BEGIN { for(i=1; i<=10; i++) print "The square root of", i, "is", i*i;}'
+
+#output should be
+#The square root of 1 is 1
+#The square root of 2 is 4
+#The square root of 3 is 9
+#The square root of 4 is 16
+#The square root of 5 is 25
+#The square root of 6 is 36
+#The square root of 7 is 49
+#The square root of 8 is 64
+#The square root of 9 is 81
+#The square root of 10 is 100
+
+#another example of awk
+
+#this will print out all lines that either start with a b or a c in my .bashrc file
+awk '$1 ~ /^[b,c]/ {print $0}' ~/.bashrc
+
+#output should be
+#colors() {
+#			bgc=${bgc#40} # black
+#case ${TERM} in
+#complete -cf sudo
+#    case $1 in
+#cat ~/.cache/wal/sequences
+
+
+#this will theoreticaly only print out the str after the first 4 charecters in a file
+awk '{print substr($0, 4)}' <FileName.something>
+
+#awk command that will match for a str and then prints out put
+awk 'match($0, /S/) {print $0 " has \"S\" charecter at " RSTART}' .config/slstatus/soundCheck
+
+#output should be
+
+#SINK=$(if [[ $(pactl list short | grep RUNNING | sed -e 's,^\([0-9][0-9]*\)[^0-9].*,\1,') = "" \ has "S" charecter at 1
+#NOW=$( pactl list sinks | grep '^[[:space:]]Volume:' | head -n $(( $SINK )) | tail -n 1 | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,' ) has "S" charecter at 69
+#mute=$(pacmd list-sinks | awk '/muted/ { print $2 }' | head -n $(( $SINK )) | tail -n 1 | sed 's/muted://g; /^$/ d; s/\s*#.*//g') has "S" charecter at 69
+
+
+#this will print out the lines 7-11 in df
+#NOTE: that the NR in <{print NR, $0}> prints the line numbers with it gone there would be no line numbers
+df | awk 'NR==7, NR==11 {print NR, $0}'
+
+#output could be
+#7 /dev/nvme0n1p1  916G  707G  163G  82% /nvme-ssd
+#8 /dev/sda1       119M   58M   52M  53% /boot
+#9 /dev/sdb1       932G  285G  647G  31% /Storage
+#10 tmpfs           1.6G   16K  1.6G   1% /run/user/1000
+
+
+
+#this will print the number of lines in /etc/shells
+#NOTE: you can add more than one files number of lines to gether by saying another file at the end
+awk 'END {print NR}' /etc/shells
+
+#output should be
+#11
