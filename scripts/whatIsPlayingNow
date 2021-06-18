@@ -15,8 +15,9 @@ while true; do
   fuck=$(cat $cachefile)
   current=$(playerctl metadata --format "Now playing: {{ artist }} - {{ title }}")
   paused=$(playerctl status)
+  artist=$(playerctl metadata --format "{{ artist }}")
 
-  if [[ $fuck != $current && $paused != "Paused" ]]; then
+  if [[ $fuck != $current && $paused != "Paused" && $artist != "" ]]; then
     notify-send "$(playerctl metadata --format "Now playing: {{ artist }} - {{ title }}")" &&
     now=$(playerctl metadata --format "Now playing: {{ artist }} - {{ title }}")
     nowSTR="$now"
