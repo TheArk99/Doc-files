@@ -1,0 +1,24 @@
+#!/bin/sh
+
+#this script requires playerctl
+
+#this script detects current media playing
+if [ -z ${XDG_CACHE_HOME+x} ]; then
+  XDG_CACHE_HOME="${HOME}/.cache"
+fi
+cachefile="${XDG_CACHE_HOME}/whatIsPlaying"
+if [ ! -f "${cachefile}" ]; then
+  touch "${cachefile}"
+fi
+
+while true; do
+  fuck=$(cat $cachefile)
+  current=$(playerctl metadata --format "Now playing: {{ artist }} - {{ title }}")
+
+  if [[ $fuck != $current ]]; then
+    notify-send "$(playerctl metadata --format "Now playing: {{ artist }} - {{ title }}")" &&
+    now=$(playerctl metadata --format "Now playing: {{ artist }} - {{ title }}")
+    nowSTR="$now"
+    echo "$nowSTR" > $cachefile
+  fi
+done

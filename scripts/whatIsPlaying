@@ -1,0 +1,7 @@
+#!/bin/sh
+
+#this script requires playerctl
+
+#this script detects current media playing
+
+playerctl metadata --format "Now playing: {{ artist }} - {{ title }}"
