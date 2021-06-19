@@ -1,0 +1,24 @@
+#!/bin/sh
+
+if [ -z ${XDG_CACHE_HOME+x} ]; then
+  XDG_CACHE_HOME="${HOME}/.cache"
+fi
+cachefile="${XDG_CACHE_HOME}/pacNotifi"
+if [ ! -f "${cachefile}" ]; then
+  touch "${cachefile}"
+fi
+
+while true; do
+  list=$(pacman -Qu)
+
+
+  logs(){
+    if [[ $(pacmanUpgrades) != "" ]]; then
+      log=$(echo "$(date +%D)--$list" > ${cachefile})
+    fi
+  }
+
+if [[ $(pacmanUpgrades) != "" && $(logs) != $(cat $cachefile) ]]; then
+    notify-send "$(pacmanUpgrades) New Pacman updates"
+  fi
+done

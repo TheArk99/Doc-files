@@ -13,13 +13,13 @@ fi
 
 while true; do
   fuck=$(cat $cachefile)
-  current=$(playerctl metadata --format "Now playing: {{ artist }} - {{ title }}")
+  current=$(playerctl metadata --format "Now playing: {{ artist }} - {{ title }}" | sed 's/\]//g; s/\[//g')
   paused=$(playerctl status)
-  artist=$(playerctl metadata --format "{{ artist }}")
+  artist=$(playerctl metadata --format "{{ artist }}" | sed 's/\]//g; s/\[//g')
 
   if [[ $fuck != $current && $paused != "Paused" && $artist != "" ]]; then
-    notify-send "$(playerctl metadata --format "Now playing: {{ artist }} - {{ title }}")" &&
-    now=$(playerctl metadata --format "Now playing: {{ artist }} - {{ title }}")
+    notify-send "$(playerctl metadata --format "Now playing: {{ artist }} - {{ title }}" | sed 's/\]//g; s/\[//g')" &&
+    now=$(playerctl metadata --format "Now playing: {{ artist }} - {{ title }}" | sed 's/\]//g; s/\[//g')
     nowSTR="$now"
     echo "$nowSTR" > $cachefile
   fi
