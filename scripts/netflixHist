@@ -1,0 +1,4 @@
+#!/bin/sh
+
+cat Downloads/NetflixViewingHistory.csv | sed 's/^.//g' | awk -F'"' '{print $1}'\
+| awk -F "Season" '{print $1}' | awk '! a[$0]++' | sed '1d' | less

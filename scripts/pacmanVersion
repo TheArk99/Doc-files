@@ -1,0 +1,6 @@
+#!/bin/sh
+
+#this script will tell me the version of
+
+
+pacman -Qi $1 | sed 's/ //g; 2 q' | awk 'BEGIN{FS=":"; OFS=": "} {print $1, $2}'

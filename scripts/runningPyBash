@@ -1,0 +1,38 @@
+#!/bin/sh
+
+echo "this will run python now" ;
+
+python - <<'end'
+import time
+print("this is now python")
+var = 1 + 1
+#print(var)
+def func(i):
+  n = 0
+  while n < i:
+    n = n + 1
+    time.sleep(0.03)
+    print(n)
+
+func(100)
+
+
+def fib(n):    # write Fibonacci series up to n
+  """Print a Fibonacci series up to n."""
+  a, b = 0, 1
+  while a < n:
+    print(a, end=' ')
+    a, b = b, a+b
+  print()
+
+fib(2000)
+
+end
+
+echo 'end of python'
+
+pyFunc() {
+    python -c '\
+    print("this is a python script in a bash func")'
+}
+pyFunc
