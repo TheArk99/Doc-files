@@ -1,0 +1,24 @@
+#!/bin/bash
+
+
+VALID_ARGUMENTS=$?
+if [ "$VALID_ARGUMENTS" != "0" ]; then
+    usage
+    exit
+fi
+while :
+do
+  case "${1}" in
+    momMac)
+      nmap 10.0.0.11 -A
+      break;;
+    myPC)
+      nmap 10.0.0.51 -A
+      break;;
+    10*)
+      nmap $1 -A
+      break;;
+    '') shift; break ;;
+    *) echo "Unexpected option: $1 - this should not happen." ; usage ;;
+  esac
+done
