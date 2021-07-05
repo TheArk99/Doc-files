@@ -1,6 +1,7 @@
 #!/bin/bash
 
 home='/home/*'
+sudo pacman -Syu git
 
 pac=$(find / -name pacman.conf  2>/dev/null | sed '/find/ d ; /etc/ d ; /.cargo/ d')
 diffs=$(diff $pac /etc/pacman.conf)
@@ -43,7 +44,7 @@ whould You like to install all apps from the installed-apps.txt?" ;
           select yn in "Yes" "No"; do
             case $yn in
               Yes ) cd $home/
-                pacman -Syu --needed $(comm -12 <(pacman -Slq | sort) <(sort $home/installed-apps.txt)) --noconfirm &
+                sudo pacman -Syu --needed $(comm -12 <(pacman -Slq | sort) <(sort $home/installed-apps.txt)) --noconfirm &
                 sleep 15
 #                git clone https://aur.archlinux.org/paru.git &
 #                cd $home/paru ;
