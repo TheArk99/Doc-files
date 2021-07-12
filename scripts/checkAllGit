@@ -5,7 +5,7 @@ check() {
     echo "$(pwd) is not fully up to date in git"
   fi
 
-  if [ "$(git status | grep 'Changes not staged for commit')" != "Changes not staged for commit" ]; then
+  if [ "$(git status | grep 'Changes not staged for commit')" == "Changes not staged for commit" ]; then
     echo "$(pwd) has unstaged files that have been changed"
   fi
 
