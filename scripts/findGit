@@ -1,0 +1,8 @@
+#!/bin/bash
+
+for d in `sudo find / -name ".git" 2>/dev/null |
+  sed '/plugged/ d; /.cache/ d; /github/ d;
+  /.cargo/ d; /brave/ d; /compatibilitytools.d/ d; /wall-rand/ d; /color-scripts/ d'`; do
+  cd $d/..; echo `pwd`:;
+  git status; echo;
+done

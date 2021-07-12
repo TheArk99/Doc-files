@@ -1,0 +1,14 @@
+#!/bin/env bash
+
+if [ "$(git status | grep 'up to date')" != "Your branch is up to date with 'origin/main'." ]; then
+  echo "$(pwd | sed -E 's/^........../~/') is not fully up to date in git"
+fi
+
+if [ "$(git status | grep 'Changes not staged for commit')" != "Changes not staged for commit" ]; then
+  echo "$(pwd | sed -E 's/^........../~/') has unstaged files that have been changed"
+fi
+
+if [[ $(git status | grep 'Untracked files:') == "Untracked files:" ]]; then
+  untracked="$(git status | awk '/use/{y=1;next;next}y' | sed '/^$/ d; s/ //g' | wc -l)"
+  echo "$(pwd | sed -E 's/^........../~/') has untracked files: $untracked"
+fi

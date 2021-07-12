@@ -1,0 +1,5 @@
+#!/bin/bash
+
+sudo find / -name ".git" 2>/dev/null |
+  sed '/plugged/ d; /.cache/ d; /github/ d;
+  /.cargo/ d; /brave/ d; /compatibilitytools.d/ d'

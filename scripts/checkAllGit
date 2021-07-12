@@ -1,0 +1,23 @@
+#!/bin/env bash
+
+check() {
+  if [ "$(git status | grep 'up to date')" != "Your branch is up to date with 'origin/main'." ]; then
+    echo "$(pwd) is not fully up to date in git"
+  fi
+
+  if [ "$(git status | grep 'Changes not staged for commit')" != "Changes not staged for commit" ]; then
+    echo "$(pwd) has unstaged files that have been changed"
+  fi
+
+  if [[ $(git status | grep 'Untracked files:') == "Untracked files:" ]]; then
+    untracked="$(git status | awk '/use/{y=1;next;next}y' | sed '/^$/ d; s/ //g' | wc -l)"
+    echo "$(pwd) has untracked files: $untracked"
+  fi
+}
+
+
+for d in `sudo find / -name ".git" 2>/dev/null |
+  sed '/plugged/ d; /.cache/ d; /github/ d;
+  /.cargo/ d; /brave/ d; /compatibilitytools.d/ d; /wall-rand/ d; /color-scripts/ d'`; do
+  cd $d/.. ; check | sed -E 's/\/home\/noah\//~\//' | sed -E 's/\/home\/noah/~\//' ; echo -e "\t "
+done
