@@ -7,11 +7,12 @@ public class recursion2 {
     if (end > start) {
       //System.out.println(start);
       //System.out.println(end);
+      System.out.println("\n" + end + "+" + sum(start, end - 1));
       int var = end + sum(start, end - 1);
-      System.out.println(var);
-      //System.out.println("\n" + end + "+" + sum(start, end -1));
+      //System.out.println(var);
       return var;
          } else {
+           //System.out.println(end);
       return end;
     }
   }
