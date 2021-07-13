@@ -1,0 +1,11 @@
+#!/bin/bash
+
+while true; do
+  if [[ "$(playerctl metadata --format "{{ title }}" | sed 's/\]//g; s/\[//g')" != \
+    "Aceable Driving | Welcome" ]]; then
+      xdotool key Right &
+  else
+    xdotool key Right &
+    sleep 25
+  fi
+done
