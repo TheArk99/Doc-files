@@ -9,7 +9,12 @@ SHUTDOWN=""
 list_icons() {
     echo $LOCK
     echo $SLEEP
-    echo $LOGOUT
+    echo $RESTART
+    echo $SHUTDOWN
+}
+
+list_icons_PC() {
+    echo $SLEEP
     echo $RESTART
     echo $SHUTDOWN
 }
@@ -17,22 +22,39 @@ list_icons() {
 handle_option() {
     case "$1" in
         "$LOCK")
-          swaylock -i /home/tichy/Pictures/walls/marsSurfaceEdit.jpg
+          slock
             ;;
         "$SLEEP")
           systemctl suspend
-            ;;
-        "$LOGOUT")
-          swaymsg exit
             ;;
         "$RESTART")
           reboot
             ;;
         "$SHUTDOWN")
-          shutdown now
+          poweroff
             ;;
     esac
 }
 
-SELECTION="$(list_icons | rofi -dmenu -theme options_menu)"
-handle_option $SELECTION &
+handle_option_PC() {
+    case "$1" in
+        "$SLEEP")
+          systemctl suspend
+            ;;
+        "$RESTART")
+          reboot
+            ;;
+        "$SHUTDOWN")
+          poweroff
+            ;;
+    esac
+}
+
+if [[ ! -f /bin/slock ]]
+then
+  SELECTION="$(list_icons_PC | rofi -dmenu -theme options_menu)"
+  handle_option_PC $SELECTION &
+else
+  SELECTION="$(list_icons | rofi -dmenu -theme options_menu)"
+  handle_option $SELECTION &
+fi
